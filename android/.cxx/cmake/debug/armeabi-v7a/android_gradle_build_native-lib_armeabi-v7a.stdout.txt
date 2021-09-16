@@ -1,0 +1,1 @@
+ninja: Entering directory `C:\Users\dptem\openssl_plugin\android\.cxx\cmake\debug\armeabi-v7a'
