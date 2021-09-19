@@ -1,0 +1,10 @@
+ninja: Entering directory `/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+../../../../src/main/cpp/native-lib.cpp:41:62: warning: more '%' conversions than data arguments [-Wformat]
+         __android_log_print(ANDROID_LOG_DEBUG, "flutter", "%sA");
+                                                            ~^
+../../../../src/main/cpp/native-lib.cpp:50:62: warning: more '%' conversions than data arguments [-Wformat]
+         __android_log_print(ANDROID_LOG_DEBUG, "flutter", "%sA");
+                                                            ~^
+2 warnings generated.
+[2/2] Linking CXX shared library /home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86/libnative-lib.so

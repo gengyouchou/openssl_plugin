@@ -1,2 +1,1 @@
-CURRENT_DIR:C:/Users/dptem/openssl_plugin/android
 Configuring done
