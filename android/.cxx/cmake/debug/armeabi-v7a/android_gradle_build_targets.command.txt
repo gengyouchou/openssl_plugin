@@ -1,8 +1,0 @@
-Executable : /home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/ninja
-arguments : 
--C
-/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/armeabi-v7a
-envelope
-native-lib
-jvmArgs : 
-

@@ -1,6 +1,6 @@
 #include "envelope.h"
 #include <log.h>
-#include "unistd.h"
+//#include "unistd.h"
 
 
 // char* appendToString(char *string, char *suffix) {
@@ -31,22 +31,24 @@
 
 extern "C"{ 
 
+
     int createRsakerpair(){
-        __android_log_print(ANDROID_LOG_DEBUG, "flutter", "1");
+        __android_log_print(ANDROID_LOG_ERROR, "flutter1","%s",strerror(errno));
         
 
         envelope env;
         env.generateRsaKeypair();
-         __android_log_print(ANDROID_LOG_DEBUG, "flutter", "strerror(errno)");
+        __android_log_print(ANDROID_LOG_ERROR, "flutter2","%s",strerror(errno));
 
-         chdir("/storage/");
+         //chdir("/storage/");
+         //File Path = Ctxt.getDir("Data");
 
         FILE *rsa_pkey_file;
-      rsa_pkey_file = fopen((char*)"emulated/0/rsa/pu.txt", "wb+");
+      rsa_pkey_file = fopen((char*)"/storage/pu.txt", "wb");
     if (!rsa_pkey_file)
     {
        
-         __android_log_print(ANDROID_LOG_DEBUG, "flutter", "%sA");
+         __android_log_print(ANDROID_LOG_ERROR, "flutter3","%s",strerror(errno));
 
         fprintf(stderr, "Error create PEM RSA Public Key File.\n");
         //exit(2);
@@ -56,14 +58,14 @@ extern "C"{
      rsa_prikey_file = fopen((char*)"/storage/emulated/0/rsa/pr.txt", "wb");
     if (!rsa_prikey_file)
     {
-         __android_log_print(ANDROID_LOG_DEBUG, "flutter", "4");
+         __android_log_print(ANDROID_LOG_ERROR, "flutter4","%s",strerror(errno));
 
         fprintf(stderr, "Error create PEM RSA Private Key File.\n");
         //exit(2);
         return -1;
     }
 
-     __android_log_print(ANDROID_LOG_DEBUG, "flutter", "5");
+     __android_log_print(ANDROID_LOG_ERROR, "flutter5","%s",strerror(errno));
 
   
      // Write the RSA keys to stdout
