@@ -1,3 +1,3 @@
-ninja: Entering directory `/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86'
+ninja: Entering directory `C:\Users\dptem\openssl_plugin\android\.cxx\cmake\debug\x86'
 [1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
-[2/2] Linking CXX shared library /home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86/libnative-lib.so
+[2/2] Linking CXX shared library C:\Users\dptem\openssl_plugin\example\build\openssl_plugin\intermediates\cmake\debug\obj\x86\libnative-lib.so

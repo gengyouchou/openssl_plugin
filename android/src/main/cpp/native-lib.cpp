@@ -23,7 +23,7 @@ extern "C"{
 
 
 
-    int createRsakeypair(const char *str,int length){
+    int createRsakeypair(const char *str){
         __android_log_print(ANDROID_LOG_ERROR, "flutter1","%s",strerror(errno));
         
 
@@ -73,28 +73,29 @@ extern "C"{
         envelope env;
 
         FILE *rsa_pkey_file;
-        rsa_pkey_file = fopen("", "rb");
+        rsa_pkey_file = fopen(appendToString(str, (char*)"/pu.txt"), "rb");
         if (!rsa_pkey_file)
         {
+            __android_log_print(ANDROID_LOG_ERROR, "encrypt1","%s",strerror(errno));
         
-        fprintf(stderr, "Error loading PEM RSA Public Key File.\n");
-        exit(2);
+            fprintf(stderr, "Error loading PEM RSA Public Key File.\n");
+            return -1;
         }
 
-    FILE *encrypt_file = fopen("", "rb");
+    FILE *encrypt_file = fopen(appendToString("/storage/emulated/0/Download", (char*)"/b.txt"), "rb");
     if (!encrypt_file)
     {
-        
+        __android_log_print(ANDROID_LOG_ERROR, "encrypt2","%s",strerror(errno));
         fprintf(stderr, "Error to open encrypt_file.\n");
-        exit(2);
+        return -1;
     }
 
-    FILE *decrypt_file = fopen(appendToString("",(char*)".enc"), "wb");
+    FILE *decrypt_file = fopen(appendToString("/storage/emulated/0/Download", (char*)"/enb.txt"), "wb");
     if (!decrypt_file)
     {
-        
+        __android_log_print(ANDROID_LOG_ERROR, "encrypt3","%s",strerror(errno));
         fprintf(stderr, "Error to write encrypt_file.\n");
-        exit(2);
+        return -1;
     }
 
    fprintf(stderr, "do_evp_seal");

@@ -78,9 +78,11 @@ class _MyAppState extends State<MyApp> {
     final path = await _localPath;
     Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
 
-    nativeAdd(nativeValue, path.length);
+    nativeAdd(nativeValue);
 
     freeFunc(nativeValue);
+
+    encrypt(nativeValue);
 
     return path;
   }
