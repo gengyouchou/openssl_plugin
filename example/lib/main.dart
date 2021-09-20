@@ -3,8 +3,12 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:openssl_plugin/openssl_plugin.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:ffi/ffi.dart';
+import 'dart:ffi'; // For FFI
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -46,15 +50,51 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<String> get _localPath async {
+    final directory = await getExternalStorageDirectory();
+
+    return directory!.path;
+  }
+
+  // Ask permission
+  requestStoragePermission() async {
+    //await super.initState();
+    //bool rootAccess = await RootAccess.requestRootAccess;
+    //print('root is:$rootAccess');
+    bool _isGranted = true;
+    if (!await Permission.storage.isGranted) {
+      PermissionStatus result = await Permission.storage.request();
+      if (result.isGranted) {
+        setState(() {
+          _isGranted = true;
+        });
+      } else {
+        _isGranted = false;
+      }
+    }
+  }
+
+  Future<String> test() async {
+    final path = await _localPath;
+    Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
+
+    nativeAdd(nativeValue, path.length);
+
+    freeFunc(nativeValue);
+
+    return path;
+  }
+
   @override
   Widget build(BuildContext context) {
+    requestStoragePermission();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('test openssl:${nativeAdd()}\n'),
+          child: Text('test openssl:${test()}\n'),
         ),
       ),
     );
