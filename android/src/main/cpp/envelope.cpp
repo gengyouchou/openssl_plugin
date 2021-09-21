@@ -2,74 +2,83 @@
 #include "envelope.h"
 using namespace std;
 
-EVP_PKEY* envelope::localKeypair;
+EVP_PKEY *envelope::localKeypair;
 
-envelope::envelope() {
-  localKeypair = NULL;
-  //init();
+envelope::envelope()
+{
+    localKeypair = NULL;
+    //init();
 }
 
-envelope::~envelope() {
+envelope::~envelope()
+{
     localKeypair = NULL;
 }
 
 // int envelope::init() {
 // }
 
+int envelope::generateRsaKeypair()
+{
+    EVP_PKEY_CTX *context = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);
 
-int envelope::generateRsaKeypair() {
-  EVP_PKEY_CTX *context = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);
+    if (EVP_PKEY_keygen_init(context) <= 0)
+    {
+        return FAILURE;
+    }
 
-  if(EVP_PKEY_keygen_init(context) <= 0) {
-    return FAILURE;
-  }
+    if (EVP_PKEY_CTX_set_rsa_keygen_bits(context, RSA_KEYLEN) <= 0)
+    {
+        return FAILURE;
+    }
 
-  if(EVP_PKEY_CTX_set_rsa_keygen_bits(context, RSA_KEYLEN) <= 0) {
-    return FAILURE;
-  }
+    if (EVP_PKEY_keygen(context, &localKeypair) <= 0)
+    {
+        return FAILURE;
+    }
 
-  if(EVP_PKEY_keygen(context, &localKeypair) <= 0) {
-    return FAILURE;
-  }
+    EVP_PKEY_CTX_free(context);
 
-  EVP_PKEY_CTX_free(context);
-
-  return SUCCESS;
+    return SUCCESS;
 }
 
-int envelope::writeKeyToFile(FILE *file, int key) {
-  switch(key) {
+int envelope::writeKeyToFile(FILE *file, int key)
+{
+    switch (key)
+    {
     case KEY_SERVER_PRI:
-      if(!PEM_write_PrivateKey(file, localKeypair, NULL, NULL, 0, 0, NULL)) {
-        return FAILURE;
-      }
-      break;
+        if (!PEM_write_PrivateKey(file, localKeypair, NULL, NULL, 0, 0, NULL))
+        {
+            return FAILURE;
+        }
+        break;
 
     case KEY_SERVER_PUB:
-      if(!PEM_write_PUBKEY(file, localKeypair)) {
-        return FAILURE;
-      }
-      break;
+        if (!PEM_write_PUBKEY(file, localKeypair))
+        {
+            return FAILURE;
+        }
+        break;
 
     default:
-      return FAILURE;
-  }
+        return FAILURE;
+    }
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 {
     int retval = 0;
-    RSA *rsa_pkey=NULL;
+    RSA *rsa_pkey = NULL;
     EVP_PKEY *pkey = EVP_PKEY_new();
-    EVP_CIPHER_CTX *ctx=EVP_CIPHER_CTX_new();
+    EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     unsigned char buffer[4096];
     unsigned char buffer_out[4096 + EVP_MAX_IV_LENGTH];
-    size_t len=0;
-    size_t len_out=0;
+    size_t len = 0;
+    size_t len_out = 0;
     unsigned char *ek;
-    size_t eklen=0;
+    size_t eklen = 0;
     //uint32_t eklen_n=0;
     unsigned char iv[EVP_MAX_IV_LENGTH];
 
@@ -91,10 +100,10 @@ int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     }
 
     printf("-2");
-    
+
     EVP_CIPHER_CTX_init(ctx);
-    ek = (unsigned char*)malloc(EVP_PKEY_size(pkey));
-    if (!EVP_SealInit(ctx, EVP_aes_128_cbc(), &ek, (int*)&eklen, iv, &pkey, 1))
+    ek = (unsigned char *)malloc(EVP_PKEY_size(pkey));
+    if (!EVP_SealInit(ctx, EVP_aes_128_cbc(), &ek, (int *)&eklen, iv, &pkey, 1))
     {
         fprintf(stderr, "EVP_SealInit: failed.\n");
         retval = 3;
@@ -102,7 +111,7 @@ int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
     }
 
     printf("0");
-   
+
     /* First we write out the encrypted key length, then the encrypted key,
      * then the iv (the IV length is fixed by the cipher we have chosen).
      */
@@ -136,7 +145,7 @@ int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 
     while ((len = fread(buffer, 1, sizeof buffer, in_file)) > 0)
     {
-        if (!EVP_SealUpdate(ctx, buffer_out, (int*)&len_out, buffer, len))
+        if (!EVP_SealUpdate(ctx, buffer_out, (int *)&len_out, buffer, len))
         {
             fprintf(stderr, "EVP_SealUpdate: failed.\n");
             retval = 3;
@@ -158,7 +167,7 @@ int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
         goto out_free;
     }
 
-    if (!EVP_SealFinal(ctx, buffer_out, (int*)&len_out))
+    if (!EVP_SealFinal(ctx, buffer_out, (int *)&len_out))
     {
         fprintf(stderr, "EVP_SealFinal: failed.\n");
         retval = 3;
@@ -174,27 +183,26 @@ int envelope::do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 
     fprintf(stderr, "Encrypted successfully\n");
 
-    out_free:
+out_free:
     EVP_PKEY_free(pkey);
     free(ek);
 
-    out:
+out:
     return retval;
 }
 
-
-int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
+int envelope ::do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 {
     int retval = 0;
-    RSA *rsa_pkey=NULL;
+    RSA *rsa_pkey = NULL;
     EVP_PKEY *pkey = EVP_PKEY_new();
-    EVP_CIPHER_CTX *ctx=EVP_CIPHER_CTX_new();
+    EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     unsigned char buffer[4096];
     unsigned char buffer_out[4096 + EVP_MAX_IV_LENGTH];
-    size_t len=0;
-    size_t len_out=0;
+    size_t len = 0;
+    size_t len_out = 0;
     unsigned char *ek;
-    size_t eklen=0;
+    size_t eklen = 0;
     //int eklen_n=0;
     unsigned char iv[EVP_MAX_IV_LENGTH];
 
@@ -214,7 +222,7 @@ int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file
     }
 
     EVP_CIPHER_CTX_init(ctx);
-    ek = (unsigned char*)malloc(EVP_PKEY_size(pkey));
+    ek = (unsigned char *)malloc(EVP_PKEY_size(pkey));
 
     /* First need to fetch the encrypted key length, encrypted key and IV */
 
@@ -228,7 +236,7 @@ int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file
     if (eklen > EVP_PKEY_size(pkey))
     {
         fprintf(stderr, "Bad encrypted key length (%u > %d)\n", (unsigned int)eklen,
-            EVP_PKEY_size(pkey));
+                EVP_PKEY_size(pkey));
         retval = 4;
         goto out_free;
     }
@@ -255,7 +263,7 @@ int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file
 
     while ((len = fread(buffer, 1, sizeof buffer, in_file)) > 0)
     {
-        if (!EVP_OpenUpdate(ctx, buffer_out, (int*)&len_out, buffer, len))
+        if (!EVP_OpenUpdate(ctx, buffer_out, (int *)&len_out, buffer, len))
         {
             fprintf(stderr, "EVP_OpenUpdate: failed.\n");
             retval = 3;
@@ -277,7 +285,7 @@ int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file
         goto out_free;
     }
 
-    if (!EVP_OpenFinal(ctx, buffer_out, (int*)&len_out))
+    if (!EVP_OpenFinal(ctx, buffer_out, (int *)&len_out))
     {
         fprintf(stderr, "EVP_OpenFinal: failed.\n");
         retval = 3;
@@ -291,14 +299,12 @@ int envelope :: do_evp_unseal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file
         goto out_free;
     }
 
-
     fprintf(stderr, "Decrypted successfully\n");
 
-    out_free:
+out_free:
     EVP_PKEY_free(pkey);
     free(ek);
 
-    out:
+out:
     return retval;
 }
-

@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ffi/ffi.dart';
 import 'dart:ffi'; // For FFI
+import 'package:file_picker/file_picker.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -74,15 +75,26 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  String file_picker() {
+    FilePicker a = FilePicker as FilePicker;
+    String file = a.getDirectoryPath() as String;
+    a.clearTemporaryFiles();
+    return file;
+  }
+
   Future<String> test() async {
-    final path = await _localPath;
+    //final path = await _localPath;
+
+    final path = file_picker();
     Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
 
-    nativeAdd(nativeValue);
+    nativeAdd(nativeValue, nativeValue);
+
+    encrypt(nativeValue, nativeValue);
+
+    decrypt(nativeValue, nativeValue);
 
     freeFunc(nativeValue);
-
-    encrypt(nativeValue);
 
     return path;
   }
