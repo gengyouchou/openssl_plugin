@@ -77,6 +77,21 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  Future<String> path_picker() async {
+    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+    String path = "";
+
+    if (selectedDirectory != null) {
+      // User canceled the picker
+      path = selectedDirectory;
+    } else {
+      print("-1");
+    }
+
+    return path;
+  }
+
   Future<String> file_picker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -99,16 +114,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String> generateRSAKeypair() async {
-    //final keypath = await _localPath;
+    final path = await _localPath;
 
-    final path = file_picker() as String;
+    //final path = await path_picker();
     Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
 
     nativeAdd(nativeValue);
-
-    encrypt(nativeValue, nativeValue);
-
-    decrypt(nativeValue, nativeValue);
 
     freeFunc(nativeValue);
 
@@ -116,18 +127,37 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String> Encrypt() async {
-    //final keypath = await _localPath;
+    final key_path = await _localPath + "/pu.txt";
 
-    final key_path = file_picker() as String;
+    //final key_path = await file_picker();
     Pointer<Int8> key_nativeValue = key_path.toNativeUtf8().cast<Int8>();
 
-    encrypt(key_nativeValue, nativeValue);
+    final crypt_path = await file_picker();
+    Pointer<Int8> crypt_nativeValue = crypt_path.toNativeUtf8().cast<Int8>();
 
-    decrypt(nativeValue, nativeValue);
+    encrypt(key_nativeValue, crypt_nativeValue);
 
-    freeFunc(nativeValue);
+    freeFunc(key_nativeValue);
+    freeFunc(crypt_nativeValue);
 
-    return path;
+    return crypt_path;
+  }
+
+  Future<String> Decrypt() async {
+    final key_path = await _localPath + "/pr.txt";
+
+    //final key_path = await file_picker();
+    Pointer<Int8> key_nativeValue = key_path.toNativeUtf8().cast<Int8>();
+
+    final crypt_path = await file_picker();
+    Pointer<Int8> crypt_nativeValue = crypt_path.toNativeUtf8().cast<Int8>();
+
+    decrypt(key_nativeValue, crypt_nativeValue);
+
+    freeFunc(key_nativeValue);
+    freeFunc(crypt_nativeValue);
+
+    return crypt_path;
   }
 
   @override
@@ -144,21 +174,21 @@ class _MyAppState extends State<MyApp> {
               (true
                   ? FlatButton(
                       child: Text('create RSA key pair'),
-                      onPressed: file_picker,
+                      onPressed: generateRSAKeypair,
                       color: Colors.green,
                     )
                   : Container()),
               (true
                   ? FlatButton(
                       child: Text('Encrypt'),
-                      onPressed: file_picker,
+                      onPressed: Encrypt,
                       color: Colors.green,
                     )
                   : Container()),
               (true
                   ? FlatButton(
                       child: Text('Decrypt'),
-                      onPressed: file_picker,
+                      onPressed: Decrypt,
                       color: Colors.blue,
                     )
                   : FlatButton(

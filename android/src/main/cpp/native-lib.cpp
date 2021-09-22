@@ -77,7 +77,7 @@ extern "C"
         rsa_pkey_file = fopen(puKeypath, "rb");
         if (!rsa_pkey_file)
         {
-            __android_log_print(ANDROID_LOG_ERROR, "encrypt1", "%s", strerror(errno));
+            __android_log_print(ANDROID_LOG_ERROR, "encrypt1", "%s", puKeypath, strerror(errno));
 
             fprintf(stderr, "Error loading PEM RSA Public Key File.\n");
             return -1;
@@ -86,7 +86,7 @@ extern "C"
         FILE *encrypt_file = fopen(encryptfile, "rb");
         if (!encrypt_file)
         {
-            __android_log_print(ANDROID_LOG_ERROR, "encrypt2", "%s", strerror(errno));
+            __android_log_print(ANDROID_LOG_ERROR, "encrypt2", "%s", encryptfile, strerror(errno));
             fprintf(stderr, "Error to open encrypt_file.\n");
             return -1;
         }
