@@ -1,21 +1,4 @@
 # ninja log v5
-11	533	653854105	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-1	539	653854105	CMakeFiles/native-lib.dir/src/main/cpp/envelope.cpp.o	1381e37c1164e4b8
-540	668	653854106	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-7	248	653857030	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-249	338	653857030	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-3	246	653857291	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-247	336	653857291	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-3	212	653857721	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-213	288	653857722	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-3	235	653857968	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-235	318	653857968	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-14	605	653937931	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-606	718	653937931	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-11	294	653939872	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-4	308	653939872	CMakeFiles/native-lib.dir/src/main/cpp/envelope.cpp.o	1381e37c1164e4b8
-309	408	653939872	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-4	279	653940194	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-279	376	653940194	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
-5	289	653948978	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	7e90875b3b4c0f45
-289	388	653948978	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	4b1d3ec7bfd90aeb
+0	150	1632309797	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	d7234d5d1defead5
+0	154	1632309797	CMakeFiles/native-lib.dir/src/main/cpp/envelope.cpp.o	90e0ffff500988c2
+154	169	1632309797	/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	811ac9d9a0254ed

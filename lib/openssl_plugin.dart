@@ -13,9 +13,8 @@ typedef FFI_reverseString = int Function(Pointer<Int8>, Pointer<Int8>);
 typedef Native_freeString = Void Function(Pointer<Int8>);
 typedef FFI_freeString = void Function(Pointer<Int8>);
 
-FFI_reverseString nativeAdd =
-    nativeAddLib.lookupFunction<Native_reverseString, FFI_reverseString>(
-        'createRsakeypair');
+FFI_freeString nativeAdd = nativeAddLib
+    .lookupFunction<Native_freeString, FFI_freeString>('createRsakeypair');
 
 FFI_reverseString encrypt = nativeAddLib
     .lookupFunction<Native_reverseString, FFI_reverseString>('encrypt');

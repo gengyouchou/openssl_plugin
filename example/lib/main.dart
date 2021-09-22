@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -75,20 +77,34 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  String file_picker() {
-    FilePicker a = FilePicker as FilePicker;
-    String file = a.getDirectoryPath() as String;
-    a.clearTemporaryFiles();
-    return file;
+  Future<String> file_picker() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    String path = "";
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+
+      print(file.name);
+      print(file.bytes);
+      print(file.size);
+      print(file.extension);
+      print(file.path);
+      path = file.path!;
+    } else {
+      // User canceled the picker
+    }
+
+    return path;
   }
 
-  Future<String> test() async {
-    //final path = await _localPath;
+  Future<String> generateRSAKeypair() async {
+    //final keypath = await _localPath;
 
-    final path = file_picker();
+    final path = file_picker() as String;
     Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
 
-    nativeAdd(nativeValue, nativeValue);
+    nativeAdd(nativeValue);
 
     encrypt(nativeValue, nativeValue);
 
@@ -99,16 +115,59 @@ class _MyAppState extends State<MyApp> {
     return path;
   }
 
+  Future<String> Encrypt() async {
+    //final keypath = await _localPath;
+
+    final key_path = file_picker() as String;
+    Pointer<Int8> key_nativeValue = key_path.toNativeUtf8().cast<Int8>();
+
+    encrypt(key_nativeValue, nativeValue);
+
+    decrypt(nativeValue, nativeValue);
+
+    freeFunc(nativeValue);
+
+    return path;
+  }
+
   @override
   Widget build(BuildContext context) {
-    requestStoragePermission();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: Text("test"),
         ),
         body: Center(
-          child: Text('test openssl:${test()}\n'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              (true
+                  ? FlatButton(
+                      child: Text('create RSA key pair'),
+                      onPressed: file_picker,
+                      color: Colors.green,
+                    )
+                  : Container()),
+              (true
+                  ? FlatButton(
+                      child: Text('Encrypt'),
+                      onPressed: file_picker,
+                      color: Colors.green,
+                    )
+                  : Container()),
+              (true
+                  ? FlatButton(
+                      child: Text('Decrypt'),
+                      onPressed: file_picker,
+                      color: Colors.blue,
+                    )
+                  : FlatButton(
+                      child: Text('Start encrypting'),
+                      onPressed: file_picker,
+                      color: Colors.green,
+                    )),
+            ],
+          ),
         ),
       ),
     );

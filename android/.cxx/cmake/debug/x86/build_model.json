@@ -5,9 +5,9 @@
     "environmentVariables": []
   },
   "cmake": {
-    "cmakeArtifactsBaseFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86",
-    "cmakeServerLogFile": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86\\cmake_server_log.txt",
-    "cmakeWrappingBaseFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cxx\\debug\\x86",
+    "cmakeArtifactsBaseFolder": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86",
+    "cmakeServerLogFile": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86/cmake_server_log.txt",
+    "cmakeWrappingBaseFolder": "/home/dpnums/openssl_plugin/android/.cxx/cxx/debug/x86",
     "effectiveConfiguration": {
       "name": "traditional-android-studio-cmake-environment",
       "description": "Composite reified CMakeSettings configuration",
@@ -15,13 +15,13 @@
       "inheritEnvironments": [
         "ndk"
       ],
-      "buildRoot": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86",
-      "cmakeToolchain": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
-      "cmakeExecutable": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
+      "buildRoot": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86",
+      "cmakeToolchain": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake",
+      "cmakeExecutable": "/home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/cmake",
       "variables": [
         {
           "name": "CMAKE_FIND_ROOT_PATH",
-          "value": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\prefab\\x86\\prefab"
+          "value": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/prefab/x86/prefab"
         },
         {
           "name": "CMAKE_BUILD_TYPE",
@@ -29,7 +29,7 @@
         },
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake"
+          "value": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake"
         },
         {
           "name": "ANDROID_ABI",
@@ -37,7 +37,7 @@
         },
         {
           "name": "ANDROID_NDK",
-          "value": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462"
+          "value": "/home/dpnums/Android/Sdk/ndk/21.1.6352462"
         },
         {
           "name": "ANDROID_PLATFORM",
@@ -49,7 +49,7 @@
         },
         {
           "name": "CMAKE_ANDROID_NDK",
-          "value": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462"
+          "value": "/home/dpnums/Android/Sdk/ndk/21.1.6352462"
         },
         {
           "name": "CMAKE_EXPORT_COMPILE_COMMANDS",
@@ -57,11 +57,11 @@
         },
         {
           "name": "CMAKE_LIBRARY_OUTPUT_DIRECTORY",
-          "value": "C:\\Users\\dptem\\openssl_plugin\\example\\build\\openssl_plugin\\intermediates\\cmake\\debug\\obj\\x86"
+          "value": "/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86"
         },
         {
           "name": "CMAKE_MAKE_PROGRAM",
-          "value": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe"
+          "value": "/home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/ninja"
         },
         {
           "name": "CMAKE_SYSTEM_NAME",
@@ -78,14 +78,14 @@
       ]
     }
   },
-  "cxxBuildFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86",
+  "cxxBuildFolder": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86",
   "info": {
     "abi": "X86",
     "bitness": 32,
     "deprecated": false,
     "default": true
   },
-  "originalCxxBuildFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86",
+  "originalCxxBuildFolder": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86",
   "variant": {
     "buildSystemArgumentList": [
       "-DANDROID_STL\u003dc++_shared"
@@ -101,24 +101,24 @@
     "module": {
       "buildSystem": "CMAKE",
       "cmake": {
-        "cmakeExe": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
+        "cmakeExe": "/home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/cmake",
         "minimumCmakeVersion": "3.10.2",
-        "ninjaExe": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe"
+        "ninjaExe": "/home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/ninja"
       },
-      "cmakeToolchainFile": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
-      "cxxFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx",
+      "cmakeToolchainFile": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake",
+      "cxxFolder": "/home/dpnums/openssl_plugin/android/.cxx",
       "gradleModulePathName": ":openssl_plugin",
-      "intermediatesFolder": "C:\\Users\\dptem\\openssl_plugin\\example\\build\\openssl_plugin\\intermediates",
-      "makeFile": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
-      "moduleBuildFile": "C:\\Users\\dptem\\openssl_plugin\\android\\build.gradle",
-      "moduleRootFolder": "C:\\Users\\dptem\\openssl_plugin\\android",
+      "intermediatesFolder": "/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates",
+      "makeFile": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+      "moduleBuildFile": "/home/dpnums/openssl_plugin/android/build.gradle",
+      "moduleRootFolder": "/home/dpnums/openssl_plugin/android",
       "ndkDefaultAbiList": [
         "ARMEABI_V7A",
         "ARM64_V8A",
         "X86",
         "X86_64"
       ],
-      "ndkFolder": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462",
+      "ndkFolder": "/home/dpnums/Android/Sdk/ndk/21.1.6352462",
       "ndkMetaAbiList": [
         {
           "abi": "ARMEABI_V7A",
@@ -175,29 +175,29 @@
       "ndkDefaultStl": "LIBCXX_STATIC",
       "ndkVersion": "21.1.6352462",
       "project": {
-        "compilerSettingsCacheFolder": "C:\\Users\\dptem\\openssl_plugin\\example\\android\\.cxx",
-        "cxxFolder": "C:\\Users\\dptem\\openssl_plugin\\example\\android\\.cxx",
+        "compilerSettingsCacheFolder": "/home/dpnums/openssl_plugin/example/android/.cxx",
+        "cxxFolder": "/home/dpnums/openssl_plugin/example/android/.cxx",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
-        "rootBuildGradleFolder": "C:\\Users\\dptem\\openssl_plugin\\example\\android",
-        "sdkFolder": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk",
+        "rootBuildGradleFolder": "/home/dpnums/openssl_plugin/example/android",
+        "sdkFolder": "/home/dpnums/Android/Sdk",
         "isPrefabEnabled": false
       },
       "splitsAbiFilterSet": [],
       "stlSharedObjectMap": {
         "LIBCXX_SHARED": {
-          "ARMEABI_V7A": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\arm-linux-androideabi\\libc++_shared.so",
-          "ARM64_V8A": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\aarch64-linux-android\\libc++_shared.so",
-          "X86": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
-          "X86_64": "C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so"
+          "ARMEABI_V7A": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so",
+          "ARM64_V8A": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so",
+          "X86": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/libc++_shared.so",
+          "X86_64": "/home/dpnums/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/x86_64-linux-android/libc++_shared.so"
         },
         "LIBCXX_STATIC": {},
         "NONE": {},
         "SYSTEM": {}
       }
     },
-    "objFolder": "C:\\Users\\dptem\\openssl_plugin\\example\\build\\openssl_plugin\\intermediates\\cmake\\debug\\obj",
+    "objFolder": "/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj",
     "variantName": "debug",
     "validAbiList": [
       "ARMEABI_V7A",
@@ -205,8 +205,8 @@
       "X86",
       "X86_64"
     ],
-    "prefabDirectory": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\prefab",
+    "prefabDirectory": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/prefab",
     "prefabPackageDirectoryList": []
   },
-  "prefabFolder": "C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\prefab\\x86"
+  "prefabFolder": "/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/prefab/x86"
 }
