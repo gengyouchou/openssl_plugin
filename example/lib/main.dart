@@ -78,16 +78,18 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String> path_picker() async {
-    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
-
     String path = "";
+    String? selectedDirectory = await FilePicker.platform
+        .getDirectoryPath()
+        .then((value) => path = value!);
 
     if (selectedDirectory != null) {
       // User canceled the picker
-      path = selectedDirectory;
     } else {
       print("-1");
     }
+
+    print(path);
 
     return path;
   }
@@ -105,7 +107,7 @@ class _MyAppState extends State<MyApp> {
       print(file.size);
       print(file.extension);
       print(file.path);
-      path = file.path!;
+      path = file.name;
     } else {
       // User canceled the picker
     }
@@ -113,10 +115,28 @@ class _MyAppState extends State<MyApp> {
     return path;
   }
 
-  Future<String> generateRSAKeypair() async {
-    final path = await _localPath;
+  String keypath = "";
+  String Keyname = "";
 
-    //final path = await path_picker();
+  void path_file_picket() async {
+    String path = "";
+    await path_picker().then((value) {
+      path = value;
+    });
+    print("fuck1" + path);
+    String name = "";
+    await file_picker().then((value) {
+      name = value;
+    });
+    keypath = path + "/" + name;
+
+    print("fuck2" + keypath);
+  }
+
+  Future<String> generateRSAKeypair() async {
+    //final path = await _localPath;
+
+    final path = await path_picker();
     Pointer<Int8> nativeValue = path.toNativeUtf8().cast<Int8>();
 
     nativeAdd(nativeValue);
@@ -178,17 +198,28 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.green,
                     )
                   : Container()),
+              ((keypath == "") == true
+                  ? RaisedButton(
+                      child: Text('keypath:' + keypath),
+                      onPressed: path_file_picket,
+                      color: Colors.red,
+                    )
+                  : RaisedButton(
+                      child: Text('keypath:' + keypath),
+                      onPressed: path_file_picket,
+                      color: Colors.green,
+                    )),
               (true
                   ? FlatButton(
                       child: Text('Encrypt'),
-                      onPressed: Encrypt,
+                      onPressed: path_picker,
                       color: Colors.green,
                     )
                   : Container()),
               (true
                   ? FlatButton(
                       child: Text('Decrypt'),
-                      onPressed: Decrypt,
+                      onPressed: file_picker,
                       color: Colors.blue,
                     )
                   : FlatButton(

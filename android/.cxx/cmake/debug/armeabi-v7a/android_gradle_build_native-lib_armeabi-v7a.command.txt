@@ -1,7 +1,7 @@
-Executable : C:\Users\dptem\AppData\Local\Android\sdk\cmake\3.10.2.4988404\bin\ninja.exe
+Executable : /home/dpnums/Android/Sdk/cmake/3.10.2.4988404/bin/ninja
 arguments : 
 -C
-C:\Users\dptem\openssl_plugin\android\.cxx\cmake\debug\armeabi-v7a
+/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/armeabi-v7a
 native-lib
 jvmArgs : 
 

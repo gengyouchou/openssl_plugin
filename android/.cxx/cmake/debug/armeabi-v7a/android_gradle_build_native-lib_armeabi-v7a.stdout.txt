@@ -1,10 +1,2 @@
-ninja: Entering directory `C:\Users\dptem\openssl_plugin\android\.cxx\cmake\debug\armeabi-v7a'
-[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
-../../../../src/main/cpp/native-lib.cpp:80:81: warning: data argument not used by format string [-Wformat-extra-args]
-            __android_log_print(ANDROID_LOG_ERROR, "encrypt1", "%s", puKeypath, strerror(errno));
-                                                               ~~~~             ^
-../../../../src/main/cpp/native-lib.cpp:89:83: warning: data argument not used by format string [-Wformat-extra-args]
-            __android_log_print(ANDROID_LOG_ERROR, "encrypt2", "%s", encryptfile, strerror(errno));
-                                                               ~~~~               ^
-2 warnings generated.
-[2/2] Linking CXX shared library C:\Users\dptem\openssl_plugin\example\build\openssl_plugin\intermediates\cmake\debug\obj\armeabi-v7a\libnative-lib.so
+ninja: Entering directory `/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/armeabi-v7a'
+ninja: no work to do.
