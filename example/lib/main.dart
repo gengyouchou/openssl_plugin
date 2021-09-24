@@ -15,6 +15,26 @@ void main() async {
   runApp(const MyApp());
 }
 
+class UpdateText extends StatefulWidget {
+  UpdateTextState createState() => UpdateTextState();
+}
+
+class UpdateTextState extends State {
+  String textHolder = 'Old Sample Text...!!!';
+
+  changeText() {
+    setState(() {
+      textHolder = 'New Sample Text...';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -128,9 +148,12 @@ class _MyAppState extends State<MyApp> {
     await file_picker().then((value) {
       name = value;
     });
-    keypath = path + "/" + name;
+    print(path + "/" + name);
 
     print("fuck2" + keypath);
+    setState(() {
+      print(keypath);
+    });
   }
 
   Future<String> generateRSAKeypair() async {
@@ -191,42 +214,31 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              (true
-                  ? FlatButton(
-                      child: Text('create RSA key pair'),
-                      onPressed: generateRSAKeypair,
-                      color: Colors.green,
-                    )
-                  : Container()),
-              ((keypath == "") == true
-                  ? RaisedButton(
-                      child: Text('keypath:' + keypath),
-                      onPressed: path_file_picket,
-                      color: Colors.red,
-                    )
-                  : RaisedButton(
-                      child: Text('keypath:' + keypath),
-                      onPressed: path_file_picket,
-                      color: Colors.green,
-                    )),
-              (true
-                  ? FlatButton(
-                      child: Text('Encrypt'),
-                      onPressed: path_picker,
-                      color: Colors.green,
-                    )
-                  : Container()),
-              (true
-                  ? FlatButton(
-                      child: Text('Decrypt'),
-                      onPressed: file_picker,
-                      color: Colors.blue,
-                    )
-                  : FlatButton(
-                      child: Text('Start encrypting'),
-                      onPressed: file_picker,
-                      color: Colors.green,
-                    )),
+              FlatButton(
+                child: Text('create RSA key pair'),
+                onPressed: generateRSAKeypair,
+                color: Colors.green,
+              ),
+              RaisedButton(
+                child: Text('keypath:' + keypath),
+                onPressed: path_file_picket,
+                color: Colors.red,
+              ),
+              Text(keypath,
+                  style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40)),
+              FlatButton(
+                child: Text('Encrypt'),
+                onPressed: path_picker,
+                color: Colors.green,
+              ),
+              FlatButton(
+                child: Text('Decrypt'),
+                onPressed: file_picker,
+                color: Colors.blue,
+              ),
             ],
           ),
         ),

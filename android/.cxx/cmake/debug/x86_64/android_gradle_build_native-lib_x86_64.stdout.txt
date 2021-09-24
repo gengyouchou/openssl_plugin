@@ -1,2 +1,2 @@
-ninja: Entering directory `/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86_64'
+ninja: Entering directory `C:\Users\dptem\openssl_plugin\android\.cxx\cmake\debug\x86_64'
 ninja: no work to do.
