@@ -12,8 +12,27 @@ import 'dart:ffi'; // For FFI
 import 'package:file_picker/file_picker.dart';
 
 void main() async {
+  requestStoragePermission();
   runApp(const MyApp());
 }
+
+// Ask permission
+requestStoragePermission() async {
+  if (!await Permission.storage.isGranted) {
+    PermissionStatus result = await Permission.storage.request();
+    if (result.isGranted) {
+      print("isGranted");
+    }
+  }
+}
+// Future<void> startup() async {
+// 	List<PermissionName> permissionNames = [];
+//     permissionNames.add(PermissionName.Location);
+//     permissionNames.add(PermissionName.Camera);
+//     permissionNames.add(PermissionName.Storage);
+//     List<Permissions> permissions = await Permission.requestPermissions(permissionNames);
+//     runApp(MyApp());
+// }
 
 class UpdateText extends StatefulWidget {
   UpdateTextState createState() => UpdateTextState();
@@ -77,24 +96,6 @@ class _MyAppState extends State<MyApp> {
     final directory = await getExternalStorageDirectory();
 
     return directory!.path;
-  }
-
-  // Ask permission
-  requestStoragePermission() async {
-    //await super.initState();
-    //bool rootAccess = await RootAccess.requestRootAccess;
-    //print('root is:$rootAccess');
-    bool _isGranted = true;
-    if (!await Permission.storage.isGranted) {
-      PermissionStatus result = await Permission.storage.request();
-      if (result.isGranted) {
-        setState(() {
-          _isGranted = true;
-        });
-      } else {
-        _isGranted = false;
-      }
-    }
   }
 
   Future<String> path_picker() async {
@@ -241,6 +242,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    requestStoragePermission;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

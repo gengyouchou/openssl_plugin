@@ -2,37 +2,37 @@
   {
     "level": "INFO",
     "message": "Start JSON generation. Platform version: 16 min SDK version: x86",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   },
   {
     "level": "INFO",
     "message": "No CMake version was specified in build.gradle. Using default version 3.10.2.",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   },
   {
     "level": "INFO",
     "message": "Trying to locate CMake in local SDK repository.",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   },
   {
     "level": "INFO",
-    "message": "- CMake found in SDK at \u0027/home/dpnums/Android/Sdk/cmake/3.10.2.4988404\u0027 had version \u00273.10.2\u0027",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "message": "- CMake found in SDK at \u0027C:\\Users\\dptem\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\u0027 had version \u00273.10.2\u0027",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   },
   {
     "level": "INFO",
-    "message": "JSON \u0027/home/dpnums/openssl_plugin/android/.cxx/cmake/debug/x86/android_gradle_build.json\u0027 was up-to-date",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "message": "JSON \u0027C:\\Users\\dptem\\openssl_plugin\\android\\.cxx\\cmake\\debug\\x86\\android_gradle_build.json\u0027 was up-to-date",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   },
   {
     "level": "INFO",
     "message": "JSON generation completed without problems",
-    "file": "/home/dpnums/openssl_plugin/android/CMakeLists.txt",
+    "file": "C:\\Users\\dptem\\openssl_plugin\\android\\CMakeLists.txt",
     "tag": "debug|x86"
   }
 ]
