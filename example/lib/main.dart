@@ -136,23 +136,25 @@ class _MyAppState extends State<MyApp> {
   }
 
   String keypath = "";
-  String Keyname = "";
+  String newkeypath = "";
+  String encryptpath = "";
+  String decryptpath = "";
 
   void path_file_picket() async {
     String path = "";
     await path_picker().then((value) {
       path = value;
     });
-    print("fuck1" + path);
+    print("fuck1");
     String name = "";
     await file_picker().then((value) {
       name = value;
     });
     print(path + "/" + name);
 
-    print("fuck2" + keypath);
+    print("fuck2");
     setState(() {
-      print(keypath);
+      keypath = path + "/" + name;
     });
   }
 
@@ -166,41 +168,75 @@ class _MyAppState extends State<MyApp> {
 
     freeFunc(nativeValue);
 
+    setState(() {
+      newkeypath = path;
+    });
+
     return path;
   }
 
   Future<String> Encrypt() async {
-    final key_path = await _localPath + "/pu.txt";
+    final key_path = keypath; //await _localPath + "/pu.txt";
+
+    String path = "";
+    await path_picker().then((value) {
+      path = value;
+    });
+
+    String name = "";
+    await file_picker().then((value) {
+      name = value;
+    });
+    print(path + "/" + name);
+
+    setState(() {
+      encryptpath = path + "/" + name;
+    });
 
     //final key_path = await file_picker();
     Pointer<Int8> key_nativeValue = key_path.toNativeUtf8().cast<Int8>();
 
-    final crypt_path = await file_picker();
-    Pointer<Int8> crypt_nativeValue = crypt_path.toNativeUtf8().cast<Int8>();
+    //final crypt_path = await file_picker();
+    Pointer<Int8> crypt_nativeValue = encryptpath.toNativeUtf8().cast<Int8>();
 
     encrypt(key_nativeValue, crypt_nativeValue);
 
     freeFunc(key_nativeValue);
     freeFunc(crypt_nativeValue);
 
-    return crypt_path;
+    return encryptpath;
   }
 
   Future<String> Decrypt() async {
-    final key_path = await _localPath + "/pr.txt";
+    final key_path = keypath; //await _localPath + "/pu.txt";
+
+    String path = "";
+    await path_picker().then((value) {
+      path = value;
+    });
+
+    String name = "";
+    await file_picker().then((value) {
+      name = value;
+    });
+    print(path + "/" + name);
+
+    setState(() {
+      decryptpath = path + "/" + name;
+    });
 
     //final key_path = await file_picker();
     Pointer<Int8> key_nativeValue = key_path.toNativeUtf8().cast<Int8>();
 
-    final crypt_path = await file_picker();
-    Pointer<Int8> crypt_nativeValue = crypt_path.toNativeUtf8().cast<Int8>();
+    //final crypt_path = await file_picker();
+    Pointer<Int8> crypt_nativeValue = decryptpath.toNativeUtf8().cast<Int8>();
 
     decrypt(key_nativeValue, crypt_nativeValue);
 
     freeFunc(key_nativeValue);
     freeFunc(crypt_nativeValue);
 
-    return crypt_path;
+    return decryptpath;
   }
 
   @override
@@ -219,25 +255,48 @@ class _MyAppState extends State<MyApp> {
                 onPressed: generateRSAKeypair,
                 color: Colors.green,
               ),
+              Expanded(
+                child: Container(
+                  child: Text(newkeypath),
+                  color: Colors.amber,
+                  height: 20,
+                ),
+              ),
               RaisedButton(
-                child: Text('keypath:' + keypath),
+                child: Text('keypath:'),
                 onPressed: path_file_picket,
                 color: Colors.red,
               ),
-              Text(keypath,
-                  style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40)),
+              Expanded(
+                child: Container(
+                  child: Text(keypath),
+                  color: Colors.amber,
+                  height: 20,
+                ),
+              ),
               FlatButton(
                 child: Text('Encrypt'),
-                onPressed: path_picker,
+                onPressed: Encrypt,
                 color: Colors.green,
+              ),
+              Expanded(
+                child: Container(
+                  child: Text(encryptpath),
+                  color: Colors.amber,
+                  height: 20,
+                ),
               ),
               FlatButton(
                 child: Text('Decrypt'),
-                onPressed: file_picker,
+                onPressed: Decrypt,
                 color: Colors.blue,
+              ),
+              Expanded(
+                child: Container(
+                  child: Text(decryptpath),
+                  color: Colors.amber,
+                  height: 20,
+                ),
               ),
             ],
           ),

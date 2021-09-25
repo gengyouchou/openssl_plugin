@@ -1,4 +1,6 @@
 # ninja log v5
-1	247	654196503	CMakeFiles/native-lib.dir/src/main/cpp/envelope.cpp.o	89e40ef76aac392b
-6	250	654196503	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	396b9c242cc93c86
-250	332	654196503	C:/Users/dptem/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	e4fd21efdd3905d2
+1	131	1632577706	CMakeFiles/native-lib.dir/src/main/cpp/envelope.cpp.o	fecfa883b8bd10c9
+1	137	1632577706	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	cccbf396f3cf9971
+137	147	1632577706	/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	504d9cfdc5818c52
+0	117	1632579130	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	cccbf396f3cf9971
+117	132	1632579130	/home/dpnums/openssl_plugin/example/build/openssl_plugin/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	504d9cfdc5818c52
