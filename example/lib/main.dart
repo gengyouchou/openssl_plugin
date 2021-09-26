@@ -10,29 +10,44 @@ import 'package:path_provider/path_provider.dart';
 import 'package:ffi/ffi.dart';
 import 'dart:ffi'; // For FFI
 import 'package:file_picker/file_picker.dart';
+import 'package:device_info/device_info.dart';
 
 void main() async {
-  requestStoragePermission();
+  WidgetsFlutterBinding.ensureInitialized();
+  await requestStoragePermission();
   runApp(const MyApp());
 }
 
-// Ask permission
-requestStoragePermission() async {
-  if (!await Permission.storage.isGranted) {
-    PermissionStatus result = await Permission.storage.request();
-    if (result.isGranted) {
-      print("isGranted");
+// // Ask permission
+// requestStoragePermission() async {
+//   //if (!await Permission.storage.isGranted) {
+//   PermissionStatus result = await Permission.storage.request();
+//   if (result.isGranted) {
+//     print("isGranted");
+//   }
+//   //}
+// }
+
+Future<bool> requestStoragePermission() async {
+  var androidInfo = await DeviceInfoPlugin().androidInfo;
+  var release = int.parse(androidInfo.version.release);
+  Permission permission;
+  if (release < 11) {
+    permission = Permission.storage;
+  } else {
+    permission = Permission.manageExternalStorage;
+  }
+  if (await permission.isGranted) {
+    return true;
+  } else {
+    var result = await permission.request();
+    if (result == PermissionStatus.granted) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
-// Future<void> startup() async {
-// 	List<PermissionName> permissionNames = [];
-//     permissionNames.add(PermissionName.Location);
-//     permissionNames.add(PermissionName.Camera);
-//     permissionNames.add(PermissionName.Storage);
-//     List<Permissions> permissions = await Permission.requestPermissions(permissionNames);
-//     runApp(MyApp());
-// }
 
 class UpdateText extends StatefulWidget {
   UpdateTextState createState() => UpdateTextState();
@@ -242,7 +257,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    requestStoragePermission;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
